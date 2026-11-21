@@ -1,0 +1,45 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="avatar-icon">✦</div>
+    <h2>¡Hola de nuevo!</h2>
+    <p>Ingresa tus credenciales para continuar</p>
+
+    <!-- Alerta de error si el login falla -->
+    @if (errorMessage) {
+      <div class="alert-error">
+        ⚠️ {{ errorMessage }}
+      </div>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="login">Usuario</label>
+        <input 
+          id="login" 
+          type="text" 
+          formControlName="login" 
+          placeholder="Escribe tu usuario..."
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="contrasena">Contraseña</label>
+        <input 
+          id="contrasena" 
+          type="password" 
+          formControlName="contrasena" 
+          placeholder="••••••••" 
+        />
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="loginForm.invalid || isLoading">
+        @if (isLoading) {
+          Cargando...
+        } @else {
+          Iniciar sesión
+        }
+      </button>
+    </form>
+  </div>
+</div>
